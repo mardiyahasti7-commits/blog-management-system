@@ -1,0 +1,161 @@
+/* ------------------------------
+   Global Defaults
+------------------------------ */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Remove underlines globally */
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* Smooth transitions for all elements */
+* {
+    transition: 0.2s ease-in-out;
+}
+
+/* ------------------------------
+   Navbar
+------------------------------ */
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffc107 !important;
+}
+
+/* ------------------------------
+   Cards & Posts UI
+------------------------------ */
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+
+.card img {
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Add shadow effect on hover */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* ------------------------------
+   Sidebar
+------------------------------ */
+.sidebar-box {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+}
+
+.sidebar-box ul li a {
+    color: #333;
+}
+
+.sidebar-box ul li a:hover {
+    color: #007bff;
+}
+
+/* ------------------------------
+   Forms
+------------------------------ */
+form label {
+    font-weight: 600;
+}
+
+form input, 
+form select,
+form textarea {
+    border-radius: 8px !important;
+}
+
+button {
+    border-radius: 8px !important;
+}
+
+/* ------------------------------
+   Dashboard Table
+------------------------------ */
+.table {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+/* ------------------------------
+   Comments
+------------------------------ */
+.comment-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px;
+    border-left: 4px solid #0d6efd;
+    margin-bottom: 10px;
+}
+
+/* ------------------------------
+   Post Detail Image
+------------------------------ */
+.feature-image {
+    border-radius: 10px;
+    max-height: 450px;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* ------------------------------
+   Responsive Tweaks
+------------------------------ */
+@media (max-width: 768px) {
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .card img {
+        max-height: 220px;
+    }
+
+    .sidebar-box {
+        margin-top: 20px;
+    }
+
+    .dashboard-table {
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile first improvements */
+@media (max-width: 540px) {
+
+    .card-body h5 {
+        font-size: 1rem;
+    }
+
+    .card-body p {
+        font-size: 0.9rem;
+    }
+
+    .pagination .page-link {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+}

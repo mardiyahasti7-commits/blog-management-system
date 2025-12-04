@@ -1,0 +1,87 @@
+{% extends 'blog/base.html' %}
+{% block title %}Home - Blog{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <!-- Search Bar -->
+    <form method="get" class="mb-3">
+      <div class="input-group">
+        <input type="text" name="query" class="form-control" placeholder="Search"
+          value="{{ request.GET.query|default_if_none:'' }}">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </div>
+    </form>
+
+    {% for post in posts %}
+    <div class="card mb-3">
+      <div class="row g-0">
+        {% if post.feature_image %}
+        <div class="col-md-4">
+          <img src="{{ post.feature_image.url }}" class="img-fluid rounded-start" alt="{{ post.title }}">
+        </div>
+        <div class="col-md-8">
+          {% else %}
+          <div class="col-12">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
+              </h5>
+              <p class="card-text">{{ post.content|truncatechars:200|safe }}</p>
+              <p class="card-text">
+                <small class="text-muted">By {{ post.user.username }} • {{ post.created_at|date:'M d, Y' }}</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p>No posts found.</p>
+      {% endfor %}
+
+      <!-- Pagination -->
+      <nav>
+        <ul class="pagination">
+          {% if posts.has_previous %}
+          <li class="page-item"><a class="page-link"
+              href="?page={{ posts.previous_page_number }}{% if q %}&q={{ q }}{% endif %}{% if category_slug %}&category={{ category_slug }}{% endif %}">Previous</a>
+          </li>
+          {% endif %}
+          <li class="page-item disabled"><span class="page-link">Page {{ posts.number }} of {{ posts.paginator.num_pages }}</span></li>
+          {% if posts.has_next %}
+          <li class="page-item"><a class="page-link"
+              href="?page={{ posts.next_page_number }}{% if q %}&q={{ q }}{% endif %}{% if category_slug %}&category={{ category_slug }}{% endif %}">Next</a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-md-4">
+
+      <!-- Categories -->
+      <div class="card mb-3 p-3">
+        <h6>Categories</h6>
+        <ul class="list-unstyled mb-0">
+          <li><a href="{% url 'home' %}">All</a></li>
+          {% for category in categories %}
+          <li><a href="?category={{ category.slug }}">{{ category.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Recent Posts -->
+      <div class="card mb-3 p-3">
+        <h6>Recent Posts</h6>
+        <ul class="list-unstyled mb-0">
+          {% for r in recent_posts %}
+          <li><a href="{% url 'post_detail' r.slug %}">{{ r.title }}</a></li>
+          {% empty %}
+          <li>No recent posts found.</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endblock %}  
