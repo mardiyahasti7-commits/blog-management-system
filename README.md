@@ -92,7 +92,7 @@ blogproject/
 
 Follow these steps carefully to run the project:
 
-# Create Virtual Environment
+- Create Virtual Environment
 
 ```bash
 python -m venv venv
